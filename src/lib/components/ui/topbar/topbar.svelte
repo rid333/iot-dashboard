@@ -39,7 +39,7 @@
 <nav class="flex justify-between">
     <Popover.Root bind:open let:ids>
         <Popover.Trigger>
-            <Button variant="outline" class="w-[200px] justify-between">
+            <Button variant="outline" class="w-[200px] flex justify-between">
                 {selectedValue}
                 <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>

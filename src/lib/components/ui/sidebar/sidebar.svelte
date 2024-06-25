@@ -4,7 +4,7 @@
     import { Button } from "$lib/components/ui/button";
 </script>
 
-<aside class="flex flex-col gap-y-5 p-5 h-screen bg-red-900">
+<aside class="flex flex-col gap-y-5 p-5 h-screen">
     <a href="/">
         <Menu class="ml-4" />
     </a>

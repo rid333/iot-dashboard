@@ -6,6 +6,8 @@
     import * as Avatar from "$lib/components/ui/avatar";
     import { cn } from "$lib/utils.js";
     import { tick } from "svelte";
+    import { Separator } from "$lib/components/ui/separator";
+    import CommandSeparator from "../command/command-separator.svelte";
 
     const sensorsId = [
         {
@@ -36,7 +38,7 @@
     let value = "";
 </script>
 
-<nav class="flex justify-between">
+<nav class="flex justify-between px-4 py-2">
     <Popover.Root bind:open let:ids>
         <Popover.Trigger>
             <Button variant="outline" class="w-[200px] flex justify-between">
@@ -80,3 +82,5 @@
         <Avatar.Fallback>RD</Avatar.Fallback>
     </Avatar.Root>
 </nav>
+
+<Separator />

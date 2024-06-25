@@ -4,22 +4,14 @@
     import Topbar from "$lib/components/ui/topbar/topbar.svelte";
 </script>
 
-<!-- <Sidebar /> -->
-<!-- <div> -->
-<!--     <Topbar /> -->
-<!--     <slot /> -->
-<!-- </div> -->
-
-<body class="dark">
+<body class="dark bg-neutral-950">
     <div class="flex">
         <div class=" h-screen">
             <Sidebar />
         </div>
         <div class="flex-1">
             <Topbar />
-            <div class="p-4">
-                <slot />
-            </div>
+            <slot />
         </div>
     </div>
 </body>

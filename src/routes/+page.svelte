@@ -2,4 +2,4 @@
     
 </script>
 
-<h1>IoT Dashboard</h1>
+<h1 class="mt-10 text-2xl font-bold">IoT Dashboard</h1>

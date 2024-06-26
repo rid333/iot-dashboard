@@ -1,13 +1,7 @@
 <script lang="ts">
-    import { Check, ChevronsUpDown } from "lucide-svelte";
-    import * as Command from "$lib/components/ui/command";
-    import * as Popover from "$lib/components/ui/popover";
-    import { Button } from "$lib/components/ui/button";
     import * as Avatar from "$lib/components/ui/avatar";
-    import { cn } from "$lib/utils.js";
-    import { tick } from "svelte";
     import { Separator } from "$lib/components/ui/separator";
-    import CommandSeparator from "../command/command-separator.svelte";
+    import * as Select from "$lib/components/ui/select/index.js";
 
     const sensorsId = [
         {
@@ -23,56 +17,25 @@
             label: "Sensor 3",
         },
     ];
-
-    $: selectedValue =
-        sensorsId.find((f) => f.value === value)?.label ?? "Select a sensor...";
-
-    function closeAndFocusTrigger(triggerId: string) {
-        open = false;
-        tick().then(() => {
-            document.getElementById(triggerId)?.focus();
-        });
-    }
-
-    let open = false;
-    let value = "";
 </script>
 
 <nav class="flex justify-between px-4 py-2">
-    <Popover.Root bind:open let:ids>
-        <Popover.Trigger>
-            <Button variant="outline" class="w-[200px] flex justify-between">
-                {selectedValue}
-                <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-        </Popover.Trigger>
-        <Popover.Content class="w-[200px] p-0">
-            <Command.Root>
-                <Command.Input placeholder="Search sensor ID..." />
-                <Command.Empty>No sensor found.</Command.Empty>
-                <Command.Group>
-                    {#each sensorsId as sensor}
-                        <Command.Item
-                            value={sensor.value}
-                            onSelect={(currentValue) => {
-                                value = currentValue;
-                                closeAndFocusTrigger(ids.trigger);
-                            }}
-                        >
-                            <Check
-                                class={cn(
-                                    "mr-2 h-4 w-4",
-                                    value !== sensor.value &&
-                                        "text-transparent",
-                                )}
-                            />
-                            {sensor.label}
-                        </Command.Item>
-                    {/each}
-                </Command.Group>
-            </Command.Root>
-        </Popover.Content>
-    </Popover.Root>
+    <Select.Root portal={null}>
+        <Select.Trigger class="w-[180px]">
+            <Select.Value placeholder="Select a sensor" />
+        </Select.Trigger>
+        <Select.Content>
+            <Select.Group>
+                <Select.Label>Sensor</Select.Label>
+                {#each sensorsId as sensor}
+                    <Select.Item value={sensor.value} label={sensor.label}
+                        >{sensor.label}</Select.Item
+                    >
+                {/each}
+            </Select.Group>
+        </Select.Content>
+        <Select.Input name="sensor" />
+    </Select.Root>
 
     <Avatar.Root>
         <Avatar.Image
